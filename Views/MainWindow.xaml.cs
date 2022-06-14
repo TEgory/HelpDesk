@@ -1,4 +1,5 @@
 ﻿using HelpDesk.Utils;
+using System;
 using System.Windows;
 
 namespace HelpDesk
@@ -9,7 +10,16 @@ namespace HelpDesk
         {
             InitializeComponent();
             Manager.MainFrame = MainFrame;
-            Manager.MainFrame.Navigate(new Views.For_the_User.MainPageUser());
+            try
+            {
+                if (Manager.IsAdministrator())
+                    Manager.MainFrame.Navigate(new Views.For_the_Admin.MainPageAdmin());
+                Manager.MainFrame.Navigate(new Views.For_the_User.MainPageUser());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

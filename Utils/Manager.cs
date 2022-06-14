@@ -4,6 +4,7 @@ using System.Net.Sockets;
 using System.Windows.Controls;
 using System.Management;
 using System.Linq;
+using System.Security.Principal;
 
 namespace HelpDesk.Utils
 {
@@ -53,6 +54,13 @@ namespace HelpDesk.Utils
 
             string totalTime = string.Format("{0:00}:{1:00}:{2:00}", days, hours, minutes);
             return totalTime;
+        }
+
+        public static bool IsAdministrator()
+        {
+            var identity = WindowsIdentity.GetCurrent();
+            var principal = new WindowsPrincipal(identity);
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
     }
 }
