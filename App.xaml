@@ -1,0 +1,86 @@
+﻿<Application x:Class="HelpDesk.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:HelpDesk"
+             StartupUri="Views/MainWindow.xaml">
+    <Application.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#F99D1D"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Height" Value="35"></Setter>
+            <Setter Property="Width" Value="150"></Setter>
+            <Setter Property="FontFamily" Value="Arial"></Setter>
+            <Setter Property="FontSize" Value="24"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="Cursor" Value="Hand"></Setter>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="TextAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="FontFamily" Value="Arial"></Setter>
+            <Setter Property="FontSize" Value="25"></Setter>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontFamily" Value="Arial"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="FontSize" Value="24"></Setter>
+            <Setter Property="Height" Value="35"></Setter>
+            <Setter Property="Width" Value="100"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="FontFamily" Value="Arial"></Setter>
+            <Setter Property="Height" Value="35"></Setter>
+            <Setter Property="Width" Value="130"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+        </Style>
+
+        
+        <Style TargetType="Border" x:Key="borderChat">
+            <Setter Property="BorderThickness" Value="0.5"></Setter>
+            <Setter Property="BorderBrush" Value="#D8D9DA"></Setter>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="blocksForHelpRequest">
+            <Setter Property="TextAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+            <Setter Property="FontFamily" Value="Arial"></Setter>
+            <Setter Property="FontSize" Value="30"></Setter>
+            <Setter Property="Margin" Value="0 0 10 0"></Setter>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="blocksForProfile">
+            <Setter Property="TextAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="FontFamily" Value="Arial"></Setter>
+            <Setter Property="FontSize" Value="30"></Setter>
+            <Setter Property="Margin" Value="15 0 0 0"></Setter>
+        </Style>
+        <Style TargetType="Image" x:Key="imgWithText">
+            <Setter Property="Stretch" Value="Fill"></Setter>
+            <Setter Property="Height" Value="25"></Setter>
+            <Setter Property="Width" Value="25"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+        </Style>
+        <Style TargetType="StackPanel" x:Key="itemsMainPageUser">
+            <Setter Property="Orientation" Value="Horizontal"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="Cursor" Value="Hand"></Setter>
+            <Setter Property="Margin" Value="0 0 25 0"></Setter>
+        </Style>
+        <Style TargetType="Window">
+            <Setter Property="Background" Value="#FAFEFB"></Setter>
+        </Style>
+        <Style TargetType="Grid">
+            <Setter Property="Background" Value="#FAFEFB"></Setter>
+        </Style>
+        <Style TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+            <Setter Property="BorderBrush" Value="Black"></Setter>
+            <Setter Property="Margin" Value="3"></Setter>
+        </Style>
+    </Application.Resources>
+</Application>
