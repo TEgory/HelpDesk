@@ -26,10 +26,10 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Id"></DataGridTextColumn>
-                <DataGridTextColumn Header="Тема" Width="400"></DataGridTextColumn>
-                <DataGridTextColumn Header="Тип"></DataGridTextColumn>
-                <DataGridTextColumn Header="Приоритет"></DataGridTextColumn>
+                <DataGridTextColumn Header="Id" Binding="{Binding RequestId}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Тема" Binding="{Binding RequestSubject}" Width="400"></DataGridTextColumn>
+                <DataGridTextColumn Header="Тип" Binding="{Binding RequestTypeId}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Приоритет" Binding="{Binding RequestPriority}"></DataGridTextColumn>
                 <DataGridTemplateColumn Header="Статус">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -37,8 +37,8 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Пользователь"></DataGridTextColumn>
-                <DataGridTextColumn Header="Оборудование"></DataGridTextColumn>
+                <DataGridTextColumn Header="Пользователь" Binding="{Binding UserId}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Оборудование" Binding="{Binding DeviceId}"></DataGridTextColumn>
                 <DataGridTemplateColumn Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

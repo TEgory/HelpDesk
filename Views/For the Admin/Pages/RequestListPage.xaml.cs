@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HelpDesk.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace HelpDesk.Views.For_the_Admin.Pages
         public RequestListPage()
         {
             InitializeComponent();
-            DGRequestList.ItemsSource = 
+            DGRequestList.ItemsSource = DataBaseEntities.GetContext().Requests.ToList();
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)

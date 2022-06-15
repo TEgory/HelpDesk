@@ -18,7 +18,6 @@ namespace HelpDesk.Models
         public Device()
         {
             this.Requests = new HashSet<Request>();
-            this.Users = new HashSet<User>();
         }
     
         public int DeviceId { get; set; }
@@ -35,7 +34,5 @@ namespace HelpDesk.Models
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Request> Requests { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
     }
 }

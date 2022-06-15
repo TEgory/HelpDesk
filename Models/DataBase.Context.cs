@@ -15,6 +15,15 @@ namespace HelpDesk.Models
     
     public partial class DataBaseEntities : DbContext
     {
+        private static DataBaseEntities _context;
+
+        public static DataBaseEntities GetContext()
+        {
+            if (_context == null)
+                _context = new DataBaseEntities();
+            return _context;
+        }
+
         public DataBaseEntities()
             : base("name=DataBaseEntities")
         {

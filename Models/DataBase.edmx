@@ -32,7 +32,7 @@
           </Key>
           <Property Name="DeviceStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DeviceStatusName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="DeviceStatusDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DeviceStatusDescription" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Dialogue">
           <Key>
@@ -107,9 +107,8 @@
           <Key>
             <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="80" Nullable="false" />
-          <Property Name="LastDevice" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Device_DeviceStatus">
           <End Role="DeviceStatus" Type="Self.DeviceStatus" Multiplicity="1" />
@@ -219,18 +218,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_User_Device">
-          <End Role="Device" Type="Self.Device" Multiplicity="1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Device">
-              <PropertyRef Name="DeviceId" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="LastDevice" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Хранилище DataBaseModelContainer">
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Device" EntityType="Self.Device" Schema="dbo" store:Type="Tables" />
@@ -279,10 +266,6 @@
             <End Role="User" EntitySet="User" />
             <End Role="Request" EntitySet="Request" />
           </AssociationSet>
-          <AssociationSet Name="FK_User_Device" Association="Self.FK_User_Device">
-            <End Role="Device" EntitySet="Device" />
-            <End Role="User" EntitySet="User" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -313,7 +296,6 @@
           <NavigationProperty Name="DeviceStatu" Relationship="Self.FK_Device_DeviceStatus" FromRole="Device" ToRole="DeviceStatus" />
           <NavigationProperty Name="User" Relationship="Self.FK_Device_User" FromRole="Device" ToRole="User" />
           <NavigationProperty Name="Requests" Relationship="Self.FK_Request_Device" FromRole="Device" ToRole="Request" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_User_Device" FromRole="Device" ToRole="User" />
         </EntityType>
         <EntityType Name="DeviceStatu">
           <Key>
@@ -321,7 +303,7 @@
           </Key>
           <Property Name="DeviceStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DeviceStatusName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DeviceStatusDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeviceStatusDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Devices" Relationship="Self.FK_Device_DeviceStatus" FromRole="DeviceStatus" ToRole="Device" />
         </EntityType>
         <EntityType Name="Dialogue">
@@ -408,11 +390,9 @@
           <Key>
             <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LastDevice" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Devices" Relationship="Self.FK_Device_User" FromRole="User" ToRole="Device" />
-          <NavigationProperty Name="Device" Relationship="Self.FK_User_Device" FromRole="User" ToRole="Device" />
           <NavigationProperty Name="Requests" Relationship="Self.FK_Request_User" FromRole="User" ToRole="Request" />
         </EntityType>
         <Association Name="FK_Request_Department">
@@ -460,18 +440,6 @@
             </Principal>
             <Dependent Role="Request">
               <PropertyRef Name="DeviceId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_User_Device">
-          <End Role="Device" Type="Self.Device" Multiplicity="1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Device">
-              <PropertyRef Name="DeviceId" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="LastDevice" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -562,10 +530,6 @@
           <AssociationSet Name="FK_Request_Device" Association="Self.FK_Request_Device">
             <End Role="Device" EntitySet="Devices" />
             <End Role="Request" EntitySet="Requests" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_Device" Association="Self.FK_User_Device">
-            <End Role="Device" EntitySet="Devices" />
-            <End Role="User" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="FK_Message_Dialogue" Association="Self.FK_Message_Dialogue">
             <End Role="Dialogue" EntitySet="Dialogues" />
@@ -707,7 +671,6 @@
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="LastDevice" ColumnName="LastDevice" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

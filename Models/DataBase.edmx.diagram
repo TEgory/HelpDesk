@@ -4,23 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c3ac956ac6694123ac7ac7d94116a3ee" Name="Diagram1">
-        <EntityTypeShape EntityType="DataBaseModel.Department" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataBaseModel.Device" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataBaseModel.DeviceStatu" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataBaseModel.Dialogue" Width="1.5" PointX="7.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataBaseModel.Message" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataBaseModel.Priority" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataBaseModel.Request" Width="1.5" PointX="7.5" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataBaseModel.RequestStatu" Width="1.5" PointX="5.25" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataBaseModel.RequestType" Width="1.5" PointX="5.25" PointY="15.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataBaseModel.sysdiagram" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataBaseModel.User" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
+      <Diagram DiagramId="366ff7a1227c41fc83a04ac7ce2c3827" Name="Diagram1">
+        <EntityTypeShape EntityType="DataBaseModel.Department" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.Device" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.DeviceStatu" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.Dialogue" Width="1.5" PointX="5.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.Message" Width="1.5" PointX="8" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.Priority" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.Request" Width="1.5" PointX="5.25" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.RequestStatu" Width="1.5" PointX="3" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.RequestType" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.sysdiagram" Width="1.5" PointX="7.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.User" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="DataBaseModel.FK_Request_Department" ManuallyRouted="false" />
         <AssociationConnector Association="DataBaseModel.FK_Device_DeviceStatus" ManuallyRouted="false" />
         <AssociationConnector Association="DataBaseModel.FK_Device_User" ManuallyRouted="false" />
         <AssociationConnector Association="DataBaseModel.FK_Request_Device" ManuallyRouted="false" />
-        <AssociationConnector Association="DataBaseModel.FK_User_Device" ManuallyRouted="false" />
         <AssociationConnector Association="DataBaseModel.FK_Message_Dialogue" ManuallyRouted="false" />
         <AssociationConnector Association="DataBaseModel.FK_Request_Priority" ManuallyRouted="false" />
         <AssociationConnector Association="DataBaseModel.FK_Request_RequestType" ManuallyRouted="false" />
