@@ -26,7 +26,7 @@ namespace HelpDesk.Models
         public int UserId { get; set; }
         public System.DateTime RequestDateOfCreation { get; set; }
         public System.DateTime RequestDateLastUpdate { get; set; }
-        public System.DateTime RequestClosingDate { get; set; }
+        public Nullable<System.DateTime> RequestClosingDate { get; set; }
     
         public virtual Department Department { get; set; }
         public virtual Device Device { get; set; }

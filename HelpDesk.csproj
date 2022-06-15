@@ -76,6 +76,7 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -148,8 +149,20 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Utils\Manager.cs" />
+    <Compile Include="Views\For the Admin\Pages\DashboardPage.xaml.cs">
+      <DependentUpon>DashboardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\For the Admin\Pages\DepartmentsPage.xaml.cs">
+      <DependentUpon>DepartmentsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\For the Admin\Pages\DevicesPage.xaml.cs">
+      <DependentUpon>DevicesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\For the Admin\Pages\RequestListPage.xaml.cs">
       <DependentUpon>RequestListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\For the Admin\Pages\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\For the User\Pages\ChatListPage.xaml.cs">
       <DependentUpon>ChatListPage.xaml</DependentUpon>
@@ -164,7 +177,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\For the Admin\Pages\DashboardPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\For the Admin\Pages\DepartmentsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\For the Admin\Pages\DevicesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\For the Admin\Pages\RequestListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\For the Admin\Pages\SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -295,9 +324,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\profile.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\notification.png" />
   </ItemGroup>
   <ItemGroup>
@@ -308,6 +334,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\dashboard.png" />
+    <Resource Include="Resources\profile.png" />
+    <Resource Include="Resources\departments.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Models\DataBase.Context.tt">

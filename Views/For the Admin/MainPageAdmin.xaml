@@ -9,19 +9,46 @@
       Title="MainPageAdmin">
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Background="#111">
+        <Grid Background="#111" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <Image Source="/Resources/menu.png" HorizontalAlignment="Left" Width="50" Cursor="Hand" MouseLeftButtonDown="Grid_MouseLeftButtonDown"/>
+                <Image Source="/Resources/menu.png" HorizontalAlignment="Left" Width="50" Cursor="Hand" MouseLeftButtonDown="Click_Menu"/>
                 <TextBlock Text="HelpDesk" Foreground="White" Margin="5"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Image Source="/Resources/notification.png" Margin="2"/>
             </StackPanel>
         </Grid>
-        <Frame Grid.Row="1" x:Name="AdminFrame" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="AdminFrame" Grid.Row="1" NavigationUIVisibility="Hidden" Grid.Column="0" Grid.ColumnSpan="2"/>
+        <Border x:Name="borderMenu" Visibility="Collapsed" BorderThickness="1" BorderBrush="#D8D9DA" Grid.Row="1" Grid.Column="0"/>
+        <StackPanel Grid.Row="1" Grid.Column="0" Visibility="Collapsed" Name="SPMenu">
+            <StackPanel Style="{DynamicResource itemsMainPageAdmin}" MouseLeftButtonDown="Click_Request">
+            <Image Source="/Resources/request.png" Style="{DynamicResource imgWithText}"/>
+            <TextBlock Text="Заявки"/>
+            </StackPanel>
+            <StackPanel Style="{DynamicResource itemsMainPageAdmin}" MouseLeftButtonDown="Click_Devices">
+                <Image Source="/Resources/envelope.png" Style="{DynamicResource imgWithText}"/>
+                <TextBlock Text="Оборудование"/>
+            </StackPanel>
+            <StackPanel Style="{DynamicResource itemsMainPageAdmin}" MouseLeftButtonDown="Click_Departments">
+                <Image Source="/Resources/departments.png" Style="{DynamicResource imgWithText}"/>
+                <TextBlock Text="Отделы"/>
+            </StackPanel>
+            <StackPanel Style="{DynamicResource itemsMainPageAdmin}" MouseLeftButtonDown="Click_Dashboard" Cursor="Hand">
+                <Image Source="/Resources/dashboard.png" Style="{DynamicResource imgWithText}"/>
+                <TextBlock Text="Анализ"/>
+            </StackPanel>
+            <StackPanel Style="{DynamicResource itemsMainPageAdmin}" MouseLeftButtonDown="Click_Settings" Cursor="Hand">
+                <Image Source="/Resources/settings.png" Style="{DynamicResource imgWithText}" />
+                <TextBlock Text="Настройки"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>

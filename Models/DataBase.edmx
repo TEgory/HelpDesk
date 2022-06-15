@@ -77,7 +77,7 @@
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="RequestDateOfCreation" Type="datetime" Nullable="false" />
           <Property Name="RequestDateLastUpdate" Type="datetime" Nullable="false" />
-          <Property Name="RequestClosingDate" Type="datetime" Nullable="false" />
+          <Property Name="RequestClosingDate" Type="datetime" />
         </EntityType>
         <EntityType Name="RequestStatus">
           <Key>
@@ -352,7 +352,7 @@
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="RequestDateOfCreation" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="RequestDateLastUpdate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="RequestClosingDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RequestClosingDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Department" Relationship="Self.FK_Request_Department" FromRole="Request" ToRole="Department" />
           <NavigationProperty Name="Device" Relationship="Self.FK_Request_Device" FromRole="Request" ToRole="Device" />
           <NavigationProperty Name="Priority" Relationship="Self.FK_Request_Priority" FromRole="Request" ToRole="Priority" />

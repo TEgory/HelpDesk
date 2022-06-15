@@ -13,7 +13,8 @@ namespace HelpDesk
             try
             {
                 Manager.AddUser();
-                Manager.AddDevice();
+                Manager.AddEditDevice(true);
+                //Manager.MainFrame.Navigate(new Views.For_the_Admin.MainPageAdmin());
 
                 if (Manager.IsAdministrator())
                     Manager.MainFrame.Navigate(new Views.For_the_Admin.MainPageAdmin());
@@ -23,6 +24,11 @@ namespace HelpDesk
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Manager.AddEditDevice(false);
         }
     }
 }

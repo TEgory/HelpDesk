@@ -43,7 +43,7 @@ namespace HelpDesk.Utils
             }
         }
 
-        public static void AddDevice()
+        public static void AddEditDevice(bool condition)
         {
             try
             {
@@ -51,16 +51,31 @@ namespace HelpDesk.Utils
                 _currentUser = DataBaseEntities.GetContext().Users.Where(x => x.UserName == Environment.UserName).FirstOrDefault();
 
                 Device _currentDevice = new Device();
-                
+                Device _checkdub = new Device();
+                _checkdub = DataBaseEntities.GetContext().Devices.Where(x => x.DeviceName == Environment.MachineName).FirstOrDefault();
 
-                if (Environment.MachineName == DataBaseEntities.GetContext().Devices.Where(x => x.DeviceName == Environment.MachineName).FirstOrDefault().DeviceName)
+                // Проверка на повторную запись устройства 
+                if (Environment.MachineName == _checkdub.DeviceName)
+                {
+                    _checkdub.Condition = condition;
+                    if (!condition)
+                    {
+                        _checkdub.DurationOnline = TimeSpan.Zero;
+                    }
+                    else
+                    {
+                        _checkdub.DurationOnline = GetDurationOnline();
+                    }
+
+                    DataBaseEntities.GetContext().SaveChanges();
                     return;
+                }
 
                 _currentDevice.DeviceName = Environment.MachineName;
                 _currentDevice.PublicIP = GetPublicIP();
                 _currentDevice.LocalIP = GetLocalIPAddress();
                 _currentDevice.OperatingSystem = GetOS();
-                _currentDevice.Condition = true;
+                _currentDevice.Condition = condition;
                 _currentDevice.DurationOnline = GetDurationOnline();
                 _currentDevice.Status = 1;
                 _currentDevice.LastUserId = _currentUser.UserId;
@@ -74,6 +89,7 @@ namespace HelpDesk.Utils
             }
         }
 
+        // Использование кортежей для вывода нескольких значений
         public static (TextBlock _CurrentUser, TextBlock _DeviceName, TextBlock _PublicIP, TextBlock _LocalIP, TextBlock _OS, TextBlock _DurationOnline) DisplayDeviceAttributes(TextBlock CurrentUser, TextBlock DeviceName, TextBlock PublicIP, TextBlock LocalIP, TextBlock OS, TextBlock DurationOnline)
         {
             CurrentUser.Text = Environment.UserName;
@@ -93,7 +109,7 @@ namespace HelpDesk.Utils
             }
             catch
             {
-                return "Подключение к Интернету отсуствует";
+                return "Подключение к Интернету отсутствует";
             }
         }
 
