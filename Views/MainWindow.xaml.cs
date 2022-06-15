@@ -14,7 +14,7 @@ namespace HelpDesk
             {
                 if (Manager.IsAdministrator())
                     Manager.MainFrame.Navigate(new Views.For_the_Admin.MainPageAdmin());
-                Manager.MainFrame.Navigate(new Views.For_the_User.MainPageUser());
+                Manager.MainFrame.Navigate(new Views.For_the_Admin.MainPageAdmin());
             }
             catch (Exception ex)
             {

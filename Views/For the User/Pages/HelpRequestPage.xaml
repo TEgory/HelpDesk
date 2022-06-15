@@ -39,7 +39,7 @@
             <TextBox Width="50" Grid.Row="1" Grid.Column="1" Margin="10 0 0 0"/>
         </StackPanel>
         <ComboBox Width="300" HorizontalAlignment="Left" Grid.Row="5" Grid.Column="1"/>
-        <Button x:Name="btnSendRequest" Content="Отправить" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="30 0 0 15" VerticalAlignment="Bottom"></Button>
-        <Button x:Name="btnCancel" Content="Отмена" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0 0 30 15" VerticalAlignment="Bottom"></Button>
+        <Button x:Name="btnSendRequest" Click="btnSendRequest_Click" Content="Отправить" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="30 0 0 15" VerticalAlignment="Bottom"></Button>
+        <Button x:Name="btnCancel" Click="btnCancel_Click" Content="Отмена" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0 0 30 15" VerticalAlignment="Bottom"></Button>
     </Grid>
 </Page>

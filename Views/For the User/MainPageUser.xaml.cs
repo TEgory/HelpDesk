@@ -18,7 +18,7 @@ namespace HelpDesk.Views.For_the_User
 
         private void Click_Chat(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            Manager.UserFrame.Navigate(new Pages.ChatPage());
+            Manager.UserFrame.Navigate(new Pages.ChatListPage());
         }
 
         private void Click_Profile(object sender, System.Windows.Input.MouseButtonEventArgs e)

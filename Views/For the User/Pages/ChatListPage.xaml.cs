@@ -1,5 +1,4 @@
-﻿using HelpDesk.Utils;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,20 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HelpDesk.Views.For_the_Admin
+namespace HelpDesk.Views.For_the_User.Pages
 {
-    public partial class MainPageAdmin : Page
+    /// <summary>
+    /// Логика взаимодействия для ChatListPage.xaml
+    /// </summary>
+    public partial class ChatListPage : Page
     {
-        public MainPageAdmin()
+        public ChatListPage()
         {
             InitializeComponent();
-            Manager.AdminFrame = AdminFrame;
-            Manager.AdminFrame.Navigate(new Pages.RequestListPage());
-        }
-
-        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
         }
     }
 }

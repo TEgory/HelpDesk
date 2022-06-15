@@ -14,16 +14,36 @@ namespace HelpDesk.Utils
         public static Frame UserFrame;
         public static Frame AdminFrame;
 
+        public static bool IsAdministrator()
+        {
+            var identity = WindowsIdentity.GetCurrent();
+            var principal = new WindowsPrincipal(identity);
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
+        }
+
         public static (TextBlock _CurrentUser, TextBlock _DeviceName, TextBlock _PublicIP, TextBlock _LocalIP, TextBlock _OS, TextBlock _DurationOnline) DisplayDeviceAttributes(TextBlock CurrentUser, TextBlock DeviceName, TextBlock PublicIP, TextBlock LocalIP, TextBlock OS, TextBlock DurationOnline)
         {
             CurrentUser.Text = "Admin";
             DeviceName.Text = Environment.MachineName;
-            PublicIP.Text = new WebClient().DownloadString("http://ipinfo.io/ip").Replace("\\r\\n", "").Replace("\\n", "").Trim();
+            PublicIP.Text = GetPublicIP();
             LocalIP.Text = GetLocalIPAddress();
             OS.Text = GetOS();
             DurationOnline.Text = GetDurationOnline();
             return (CurrentUser, DeviceName, PublicIP, LocalIP, OS, DurationOnline);
         }
+
+        private static string GetPublicIP()
+        {
+            try
+            {
+                return new WebClient().DownloadString("http://ipinfo.io/ip").Replace("\\r\\n", "").Replace("\\n", "").Trim();
+            }
+            catch
+            {
+                return "Подключение к Интернету отсуствует";
+            }
+        }
+
         private static string GetLocalIPAddress()
         {
             var host = Dns.GetHostEntry(Dns.GetHostName());
@@ -54,13 +74,6 @@ namespace HelpDesk.Utils
 
             string totalTime = string.Format("{0:00}:{1:00}:{2:00}", days, hours, minutes);
             return totalTime;
-        }
-
-        public static bool IsAdministrator()
-        {
-            var identity = WindowsIdentity.GetCurrent();
-            var principal = new WindowsPrincipal(identity);
-            return principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
     }
 }

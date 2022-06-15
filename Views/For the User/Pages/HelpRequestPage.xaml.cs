@@ -21,5 +21,25 @@ namespace HelpDesk.Views.For_the_User.Pages
         {
             InitializeComponent();
         }
+
+        private void btnSendRequest_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                MessageBox.Show("Заявка отправлена успешно!", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                StringBuilder errors = new StringBuilder();
+                errors.AppendLine("Не удалось отправить заявку");
+                errors.AppendLine("Подробности: " + "Не удалось подключиться к SQL серверу");
+                MessageBox.Show(errors.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

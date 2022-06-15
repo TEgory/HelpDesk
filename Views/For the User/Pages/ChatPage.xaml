@@ -14,9 +14,6 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Border Grid.Row="0" Style="{StaticResource borderChat}"></Border>
-        <Grid Grid.Row="0" Background="#E0E0E0">
-            <TextBlock Text="Список диалогов пуст"/>
-        </Grid>
         <Grid Grid.Row="1" Background="#FFF">
             <TextBox x:Name="txtChat" Background="#FFF" Foreground="LightGray" Text="Написать сообщение..." HorizontalAlignment="Left" Width="1070" Height="40" TextWrapping="Wrap" BorderBrush="#636665" BorderThickness="0"/>
             <Image Height="40" Width="40" HorizontalAlignment="Right" Margin="0 0 10 0" Cursor="Hand" Source="/Resources/send-message.png" Stretch="UniformToFill"/>

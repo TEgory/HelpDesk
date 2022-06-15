@@ -9,6 +9,19 @@
       Title="MainPageAdmin">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Background="#111">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Image Source="/Resources/menu.png" HorizontalAlignment="Left" Width="50" Cursor="Hand" MouseLeftButtonDown="Grid_MouseLeftButtonDown"/>
+                <TextBlock Text="HelpDesk" Foreground="White" Margin="5"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Image Source="/Resources/notification.png" Margin="2"/>
+            </StackPanel>
+        </Grid>
+        <Frame Grid.Row="1" x:Name="AdminFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Page>
