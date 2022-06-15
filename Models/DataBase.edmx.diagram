@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="76b109a949a340e6916bbf7a04ea43b2" Name="Diagram1">
+        <EntityTypeShape EntityType="DataBaseModel.Department" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.Device" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.DeviceStatu" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.Dialogue" Width="1.5" PointX="7.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.Message" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.Priority" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.Request" Width="1.5" PointX="7.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.RequestStatu" Width="1.5" PointX="5.25" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.RequestType" Width="1.5" PointX="5.25" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.sysdiagram" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.User" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
+        <AssociationConnector Association="DataBaseModel.FK_Request_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseModel.FK_Device_DeviceStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseModel.FK_Device_User" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseModel.FK_Request_Device" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseModel.FK_User_Device" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseModel.FK_Message_Dialogue" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseModel.FK_Request_Priority" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseModel.FK_Request_RequestType" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseModel.FK_Request_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseModel.FK_Request_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
