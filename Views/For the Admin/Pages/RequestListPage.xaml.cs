@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace HelpDesk.Views.For_the_Admin.Pages
         public RequestListPage()
         {
             InitializeComponent();
+            DGRequestList.ItemsSource = 
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)

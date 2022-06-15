@@ -12,20 +12,11 @@ namespace HelpDesk.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
-    public partial class HelpDeskEntities : DbContext
+    
+    public partial class DataBaseEntities : DbContext
     {
-        private static HelpDeskEntities _context;
-
-        public static HelpDeskEntities GetContext()
-        {
-            if( _context == null )
-                _context = new HelpDeskEntities();
-            return _context;
-        }
-
-        public HelpDeskEntities()
-            : base("name=HelpDeskEntities")
+        public DataBaseEntities()
+            : base("name=DataBaseEntities")
         {
         }
     

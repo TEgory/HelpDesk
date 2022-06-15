@@ -535,7 +535,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="HelpDeskEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DataBaseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Departments" EntityType="Self.Department" />
           <EntitySet Name="Devices" EntityType="Self.Device" />
           <EntitySet Name="DeviceStatus" EntityType="Self.DeviceStatu" />
@@ -593,7 +593,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище DataBaseModelContainer" CdmEntityContainer="HelpDeskEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DataBaseModelContainer" CdmEntityContainer="DataBaseEntities">
           <EntitySetMapping Name="Departments">
             <EntityTypeMapping TypeName="DataBaseModel.Department">
               <MappingFragment StoreEntitySet="Department">
