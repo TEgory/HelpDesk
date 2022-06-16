@@ -1,0 +1,700 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище DataBaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="DepartmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmenName" Type="nvarchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Device">
+          <Key>
+            <PropertyRef Name="DeviceId" />
+          </Key>
+          <Property Name="DeviceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeviceName" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="PublicIP" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="LocalIP" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="OperatingSystem" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Condition" Type="bit" Nullable="false" />
+          <Property Name="DurationOnline" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="LastUserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DeviceStatus">
+          <Key>
+            <PropertyRef Name="DeviceStatusId" />
+          </Key>
+          <Property Name="DeviceStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeviceStatusName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DeviceStatusDescription" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Dialogue">
+          <Key>
+            <PropertyRef Name="DialogueId" />
+          </Key>
+          <Property Name="DialogueId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DialogueFirstUserId" Type="int" Nullable="false" />
+          <Property Name="DialogueSecondUserId" Type="int" Nullable="false" />
+          <Property Name="DialogueDateOfCreation" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="MessageId" />
+          </Key>
+          <Property Name="MessageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MessageText" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="DialogueId" Type="int" Nullable="false" />
+          <Property Name="Sender" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="MessageIsRead" Type="bit" Nullable="false" />
+          <Property Name="MessageTime" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Priority">
+          <Key>
+            <PropertyRef Name="PriorityId" />
+          </Key>
+          <Property Name="PriorityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PriorityName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="RequestId" />
+          </Key>
+          <Property Name="RequestId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestSubject" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RequestTypeId" Type="int" Nullable="false" />
+          <Property Name="RequestDescription" Type="nvarchar(max)" />
+          <Property Name="RequestDepartment" Type="int" />
+          <Property Name="RequestCabinet" Type="nvarchar" MaxLength="8" />
+          <Property Name="RequestPriority" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="DeviceId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RequestDateOfCreation" Type="datetime" Nullable="false" />
+          <Property Name="RequestDateLastUpdate" Type="datetime" Nullable="false" />
+          <Property Name="RequestClosingDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RequestStatus">
+          <Key>
+            <PropertyRef Name="RequestStatusId" />
+          </Key>
+          <Property Name="RequestStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestStatusName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RequestType">
+          <Key>
+            <PropertyRef Name="RequestTypeId" />
+          </Key>
+          <Property Name="RequestTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Device_DeviceStatus">
+          <End Role="DeviceStatus" Type="Self.DeviceStatus" Multiplicity="1" />
+          <End Role="Device" Type="Self.Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeviceStatus">
+              <PropertyRef Name="DeviceStatusId" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Device_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Device" Type="Self.Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="LastUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_Dialogue">
+          <End Role="Dialogue" Type="Self.Dialogue" Multiplicity="1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dialogue">
+              <PropertyRef Name="DialogueId" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="DialogueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="RequestDepartment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_Device">
+          <End Role="Device" Type="Self.Device" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Device">
+              <PropertyRef Name="DeviceId" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="DeviceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_Priority">
+          <End Role="Priority" Type="Self.Priority" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Priority">
+              <PropertyRef Name="PriorityId" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="RequestPriority" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_RequestType">
+          <End Role="RequestType" Type="Self.RequestType" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RequestType">
+              <PropertyRef Name="RequestTypeId" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="RequestTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_Status">
+          <End Role="RequestStatus" Type="Self.RequestStatus" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RequestStatus">
+              <PropertyRef Name="RequestStatusId" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище DataBaseModelContainer">
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Device" EntityType="Self.Device" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeviceStatus" EntityType="Self.DeviceStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dialogue" EntityType="Self.Dialogue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Priority" EntityType="Self.Priority" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RequestStatus" EntityType="Self.RequestStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RequestType" EntityType="Self.RequestType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Device_DeviceStatus" Association="Self.FK_Device_DeviceStatus">
+            <End Role="DeviceStatus" EntitySet="DeviceStatus" />
+            <End Role="Device" EntitySet="Device" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Device_User" Association="Self.FK_Device_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Device" EntitySet="Device" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_Dialogue" Association="Self.FK_Message_Dialogue">
+            <End Role="Dialogue" EntitySet="Dialogue" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Department" Association="Self.FK_Request_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Device" Association="Self.FK_Request_Device">
+            <End Role="Device" EntitySet="Device" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Priority" Association="Self.FK_Request_Priority">
+            <End Role="Priority" EntitySet="Priority" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_RequestType" Association="Self.FK_Request_RequestType">
+            <End Role="RequestType" EntitySet="RequestType" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Status" Association="Self.FK_Request_Status">
+            <End Role="RequestStatus" EntitySet="RequestStatus" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_User" Association="Self.FK_Request_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="DepartmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmenName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK_Request_Department" FromRole="Department" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Device">
+          <Key>
+            <PropertyRef Name="DeviceId" />
+          </Key>
+          <Property Name="DeviceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeviceName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PublicIP" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LocalIP" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OperatingSystem" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Condition" Type="Boolean" Nullable="false" />
+          <Property Name="DurationOnline" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="LastUserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DeviceStatu" Relationship="Self.FK_Device_DeviceStatus" FromRole="Device" ToRole="DeviceStatus" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Device_User" FromRole="Device" ToRole="User" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK_Request_Device" FromRole="Device" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="DeviceStatu">
+          <Key>
+            <PropertyRef Name="DeviceStatusId" />
+          </Key>
+          <Property Name="DeviceStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeviceStatusName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeviceStatusDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Devices" Relationship="Self.FK_Device_DeviceStatus" FromRole="DeviceStatus" ToRole="Device" />
+        </EntityType>
+        <EntityType Name="Dialogue">
+          <Key>
+            <PropertyRef Name="DialogueId" />
+          </Key>
+          <Property Name="DialogueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DialogueFirstUserId" Type="Int32" Nullable="false" />
+          <Property Name="DialogueSecondUserId" Type="Int32" Nullable="false" />
+          <Property Name="DialogueDateOfCreation" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Messages" Relationship="Self.FK_Message_Dialogue" FromRole="Dialogue" ToRole="Message" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="MessageId" />
+          </Key>
+          <Property Name="MessageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MessageText" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DialogueId" Type="Int32" Nullable="false" />
+          <Property Name="Sender" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MessageIsRead" Type="Boolean" Nullable="false" />
+          <Property Name="MessageTime" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Dialogue" Relationship="Self.FK_Message_Dialogue" FromRole="Message" ToRole="Dialogue" />
+        </EntityType>
+        <EntityType Name="Priority">
+          <Key>
+            <PropertyRef Name="PriorityId" />
+          </Key>
+          <Property Name="PriorityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PriorityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK_Request_Priority" FromRole="Priority" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="RequestId" />
+          </Key>
+          <Property Name="RequestId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestSubject" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RequestTypeId" Type="Int32" Nullable="false" />
+          <Property Name="RequestDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RequestDepartment" Type="Int32" />
+          <Property Name="RequestCabinet" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="RequestPriority" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="DeviceId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="RequestDateOfCreation" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RequestDateLastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RequestClosingDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_Request_Department" FromRole="Request" ToRole="Department" />
+          <NavigationProperty Name="Device" Relationship="Self.FK_Request_Device" FromRole="Request" ToRole="Device" />
+          <NavigationProperty Name="Priority" Relationship="Self.FK_Request_Priority" FromRole="Request" ToRole="Priority" />
+          <NavigationProperty Name="RequestType" Relationship="Self.FK_Request_RequestType" FromRole="Request" ToRole="RequestType" />
+          <NavigationProperty Name="RequestStatu" Relationship="Self.FK_Request_Status" FromRole="Request" ToRole="RequestStatus" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Request_User" FromRole="Request" ToRole="User" />
+        </EntityType>
+        <EntityType Name="RequestStatu">
+          <Key>
+            <PropertyRef Name="RequestStatusId" />
+          </Key>
+          <Property Name="RequestStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK_Request_Status" FromRole="RequestStatus" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="RequestType">
+          <Key>
+            <PropertyRef Name="RequestTypeId" />
+          </Key>
+          <Property Name="RequestTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK_Request_RequestType" FromRole="RequestType" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Devices" Relationship="Self.FK_Device_User" FromRole="User" ToRole="Device" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK_Request_User" FromRole="User" ToRole="Request" />
+        </EntityType>
+        <Association Name="FK_Request_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="RequestDepartment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Device_DeviceStatus">
+          <End Role="DeviceStatus" Type="Self.DeviceStatu" Multiplicity="1" />
+          <End Role="Device" Type="Self.Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeviceStatus">
+              <PropertyRef Name="DeviceStatusId" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Device_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Device" Type="Self.Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="LastUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_Device">
+          <End Role="Device" Type="Self.Device" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Device">
+              <PropertyRef Name="DeviceId" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="DeviceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_Dialogue">
+          <End Role="Dialogue" Type="Self.Dialogue" Multiplicity="1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dialogue">
+              <PropertyRef Name="DialogueId" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="DialogueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_Priority">
+          <End Role="Priority" Type="Self.Priority" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Priority">
+              <PropertyRef Name="PriorityId" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="RequestPriority" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_RequestType">
+          <End Role="RequestType" Type="Self.RequestType" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RequestType">
+              <PropertyRef Name="RequestTypeId" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="RequestTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_Status">
+          <End Role="RequestStatus" Type="Self.RequestStatu" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RequestStatus">
+              <PropertyRef Name="RequestStatusId" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DataBaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="Devices" EntityType="Self.Device" />
+          <EntitySet Name="DeviceStatus" EntityType="Self.DeviceStatu" />
+          <EntitySet Name="Dialogues" EntityType="Self.Dialogue" />
+          <EntitySet Name="Messages" EntityType="Self.Message" />
+          <EntitySet Name="Priorities" EntityType="Self.Priority" />
+          <EntitySet Name="Requests" EntityType="Self.Request" />
+          <EntitySet Name="RequestStatus" EntityType="Self.RequestStatu" />
+          <EntitySet Name="RequestTypes" EntityType="Self.RequestType" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Request_Department" Association="Self.FK_Request_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Device_DeviceStatus" Association="Self.FK_Device_DeviceStatus">
+            <End Role="DeviceStatus" EntitySet="DeviceStatus" />
+            <End Role="Device" EntitySet="Devices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Device_User" Association="Self.FK_Device_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Device" EntitySet="Devices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Device" Association="Self.FK_Request_Device">
+            <End Role="Device" EntitySet="Devices" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_Dialogue" Association="Self.FK_Message_Dialogue">
+            <End Role="Dialogue" EntitySet="Dialogues" />
+            <End Role="Message" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Priority" Association="Self.FK_Request_Priority">
+            <End Role="Priority" EntitySet="Priorities" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_RequestType" Association="Self.FK_Request_RequestType">
+            <End Role="RequestType" EntitySet="RequestTypes" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Status" Association="Self.FK_Request_Status">
+            <End Role="RequestStatus" EntitySet="RequestStatus" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_User" Association="Self.FK_Request_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DataBaseModelContainer" CdmEntityContainer="DataBaseEntities">
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="DataBaseModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="DepartmenName" ColumnName="DepartmenName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Devices">
+            <EntityTypeMapping TypeName="DataBaseModel.Device">
+              <MappingFragment StoreEntitySet="Device">
+                <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
+                <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
+                <ScalarProperty Name="PublicIP" ColumnName="PublicIP" />
+                <ScalarProperty Name="LocalIP" ColumnName="LocalIP" />
+                <ScalarProperty Name="OperatingSystem" ColumnName="OperatingSystem" />
+                <ScalarProperty Name="Condition" ColumnName="Condition" />
+                <ScalarProperty Name="DurationOnline" ColumnName="DurationOnline" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="LastUserId" ColumnName="LastUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeviceStatus">
+            <EntityTypeMapping TypeName="DataBaseModel.DeviceStatu">
+              <MappingFragment StoreEntitySet="DeviceStatus">
+                <ScalarProperty Name="DeviceStatusId" ColumnName="DeviceStatusId" />
+                <ScalarProperty Name="DeviceStatusName" ColumnName="DeviceStatusName" />
+                <ScalarProperty Name="DeviceStatusDescription" ColumnName="DeviceStatusDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dialogues">
+            <EntityTypeMapping TypeName="DataBaseModel.Dialogue">
+              <MappingFragment StoreEntitySet="Dialogue">
+                <ScalarProperty Name="DialogueId" ColumnName="DialogueId" />
+                <ScalarProperty Name="DialogueFirstUserId" ColumnName="DialogueFirstUserId" />
+                <ScalarProperty Name="DialogueSecondUserId" ColumnName="DialogueSecondUserId" />
+                <ScalarProperty Name="DialogueDateOfCreation" ColumnName="DialogueDateOfCreation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="DataBaseModel.Message">
+              <MappingFragment StoreEntitySet="Message">
+                <ScalarProperty Name="MessageId" ColumnName="MessageId" />
+                <ScalarProperty Name="MessageText" ColumnName="MessageText" />
+                <ScalarProperty Name="DialogueId" ColumnName="DialogueId" />
+                <ScalarProperty Name="Sender" ColumnName="Sender" />
+                <ScalarProperty Name="MessageIsRead" ColumnName="MessageIsRead" />
+                <ScalarProperty Name="MessageTime" ColumnName="MessageTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Priorities">
+            <EntityTypeMapping TypeName="DataBaseModel.Priority">
+              <MappingFragment StoreEntitySet="Priority">
+                <ScalarProperty Name="PriorityId" ColumnName="PriorityId" />
+                <ScalarProperty Name="PriorityName" ColumnName="PriorityName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requests">
+            <EntityTypeMapping TypeName="DataBaseModel.Request">
+              <MappingFragment StoreEntitySet="Request">
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="RequestSubject" ColumnName="RequestSubject" />
+                <ScalarProperty Name="RequestTypeId" ColumnName="RequestTypeId" />
+                <ScalarProperty Name="RequestDescription" ColumnName="RequestDescription" />
+                <ScalarProperty Name="RequestDepartment" ColumnName="RequestDepartment" />
+                <ScalarProperty Name="RequestCabinet" ColumnName="RequestCabinet" />
+                <ScalarProperty Name="RequestPriority" ColumnName="RequestPriority" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RequestDateOfCreation" ColumnName="RequestDateOfCreation" />
+                <ScalarProperty Name="RequestDateLastUpdate" ColumnName="RequestDateLastUpdate" />
+                <ScalarProperty Name="RequestClosingDate" ColumnName="RequestClosingDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestStatus">
+            <EntityTypeMapping TypeName="DataBaseModel.RequestStatu">
+              <MappingFragment StoreEntitySet="RequestStatus">
+                <ScalarProperty Name="RequestStatusId" ColumnName="RequestStatusId" />
+                <ScalarProperty Name="RequestStatusName" ColumnName="RequestStatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestTypes">
+            <EntityTypeMapping TypeName="DataBaseModel.RequestType">
+              <MappingFragment StoreEntitySet="RequestType">
+                <ScalarProperty Name="RequestTypeId" ColumnName="RequestTypeId" />
+                <ScalarProperty Name="RequestTypeName" ColumnName="RequestTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DataBaseModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DataBaseModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

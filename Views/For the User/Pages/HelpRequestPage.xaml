@@ -30,16 +30,19 @@
         <TextBlock Text="Отдел:" Style="{StaticResource blocksForHelpRequest}" Grid.Row="4" Grid.Column="0"/>
         <TextBlock Text="Приоритет:" Style="{StaticResource blocksForHelpRequest}" Grid.Row="5" Grid.Column="0"/>
         <!--Column#2-->
-        <TextBox Width="475" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1"/>
-        <ComboBox Width="300" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="1"/>
-        <TextBox Width="475" Height="140" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" VerticalContentAlignment="Top"/>
-        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1">
-            <ComboBox Width="300" HorizontalAlignment="Left" />
-            <TextBlock Text="Кабинет:" Style="{StaticResource blocksForHelpRequest}" Margin="10 0 0 0" Grid.Row="5" Grid.Column="0"/>
-            <TextBox Width="50" Grid.Row="1" Grid.Column="1" Margin="10 0 0 0"/>
+        <TextBox Width="475" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" Text="{Binding RequestSubject}"/>
+        <ComboBox x:Name="CBRequestType" DisplayMemberPath="RequestTypeName" Width="300" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="1" SelectedItem="{Binding RequestType}"/>
+        <StackPanel Orientation="Vertical" Grid.Row="3" Grid.Column="1">
+            <TextBox Width="475" Height="120" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalContentAlignment="Top" Text="{Binding RequestDescription}"/>
+            <TextBlock Text="необязательное поле" FontSize="12" Foreground="Gray" HorizontalAlignment="Left" Margin="5 0 0 0"/>
         </StackPanel>
-        <ComboBox Width="300" HorizontalAlignment="Left" Grid.Row="5" Grid.Column="1"/>
-        <Button x:Name="btnSendRequest" Content="Отправить" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="30 0 0 15" VerticalAlignment="Bottom"></Button>
-        <Button x:Name="btnCancel" Content="Отмена" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0 0 30 15" VerticalAlignment="Bottom"></Button>
+        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1">
+            <ComboBox Width="300" HorizontalAlignment="Left" x:Name="CBDepartmen" DisplayMemberPath="DepartmenName" SelectedItem="{Binding Department}"/>
+            <TextBlock Text="Кабинет:" Style="{StaticResource blocksForHelpRequest}" Margin="10 0 0 0" Grid.Row="5" Grid.Column="0"/>
+            <TextBox Width="50" Grid.Row="1" Grid.Column="1" Margin="10 0 0 0" Text="{Binding RequestCabinet}"/>
+        </StackPanel>
+        <ComboBox Width="300" HorizontalAlignment="Left" Grid.Row="5" Grid.Column="1" x:Name="CBPriority" DisplayMemberPath="PriorityName" SelectedItem="{Binding Priority}"/>
+        <Button x:Name="btnSendRequest" Click="btnSendRequest_Click" Content="Отправить" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="30 0 0 15" VerticalAlignment="Bottom"></Button>
+        <Button x:Name="btnCancel" Click="btnCancel_Click" Content="Отмена" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0 0 30 15" VerticalAlignment="Bottom"></Button>
     </Grid>
 </Page>
