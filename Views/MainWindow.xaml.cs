@@ -14,11 +14,11 @@ namespace HelpDesk
             {
                 Manager.AddUser();
                 Manager.AddEditDevice(true);
-                //Manager.MainFrame.Navigate(new Views.For_the_Admin.MainPageAdmin());
+                Manager.MainFrame.Navigate(new Views.For_the_Admin.MainPageAdmin());
 
-                if (Manager.IsAdministrator())
-                    Manager.MainFrame.Navigate(new Views.For_the_Admin.MainPageAdmin());
-                Manager.MainFrame.Navigate(new Views.For_the_User.MainPageUser());
+                //if (Manager.IsAdministrator())
+                //    Manager.MainFrame.Navigate(new Views.For_the_Admin.MainPageAdmin());
+                //Manager.MainFrame.Navigate(new Views.For_the_User.MainPageUser());
             }
             catch (Exception ex)
             {

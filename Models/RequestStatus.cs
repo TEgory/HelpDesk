@@ -12,19 +12,18 @@ namespace HelpDesk.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DeviceStatu
+    public partial class RequestStatus
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DeviceStatu()
+        public RequestStatus()
         {
-            this.Devices = new HashSet<Device>();
+            this.Requests = new HashSet<Request>();
         }
     
-        public int DeviceStatusId { get; set; }
-        public string DeviceStatusName { get; set; }
-        public string DeviceStatusDescription { get; set; }
+        public int RequestStatusId { get; set; }
+        public string RequestStatusName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Device> Devices { get; set; }
+        public virtual ICollection<Request> Requests { get; set; }
     }
 }

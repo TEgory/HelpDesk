@@ -71,8 +71,8 @@
           <Property Name="RequestDescription" Type="nvarchar(max)" />
           <Property Name="RequestDepartment" Type="int" />
           <Property Name="RequestCabinet" Type="nvarchar" MaxLength="8" />
-          <Property Name="RequestPriority" Type="int" Nullable="false" />
-          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="PriorityId" Type="int" Nullable="false" />
+          <Property Name="RequestStatusId" Type="int" Nullable="false" />
           <Property Name="DeviceId" Type="int" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="RequestDateOfCreation" Type="datetime" Nullable="false" />
@@ -178,7 +178,7 @@
               <PropertyRef Name="PriorityId" />
             </Principal>
             <Dependent Role="Request">
-              <PropertyRef Name="RequestPriority" />
+              <PropertyRef Name="PriorityId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -202,7 +202,7 @@
               <PropertyRef Name="RequestStatusId" />
             </Principal>
             <Dependent Role="Request">
-              <PropertyRef Name="Status" />
+              <PropertyRef Name="RequestStatusId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -293,11 +293,11 @@
           <Property Name="DurationOnline" Type="Time" Nullable="false" Precision="7" />
           <Property Name="Status" Type="Int32" Nullable="false" />
           <Property Name="LastUserId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="DeviceStatu" Relationship="Self.FK_Device_DeviceStatus" FromRole="Device" ToRole="DeviceStatus" />
+          <NavigationProperty Name="DeviceStatus" Relationship="Self.FK_Device_DeviceStatus" FromRole="Device" ToRole="DeviceStatus" />
           <NavigationProperty Name="User" Relationship="Self.FK_Device_User" FromRole="Device" ToRole="User" />
           <NavigationProperty Name="Requests" Relationship="Self.FK_Request_Device" FromRole="Device" ToRole="Request" />
         </EntityType>
-        <EntityType Name="DeviceStatu">
+        <EntityType Name="DeviceStatus">
           <Key>
             <PropertyRef Name="DeviceStatusId" />
           </Key>
@@ -346,8 +346,8 @@
           <Property Name="RequestDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RequestDepartment" Type="Int32" />
           <Property Name="RequestCabinet" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
-          <Property Name="RequestPriority" Type="Int32" Nullable="false" />
-          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="PriorityId" Type="Int32" Nullable="false" />
+          <Property Name="RequestStatusId" Type="Int32" Nullable="false" />
           <Property Name="DeviceId" Type="Int32" Nullable="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="RequestDateOfCreation" Type="DateTime" Nullable="false" Precision="3" />
@@ -357,10 +357,10 @@
           <NavigationProperty Name="Device" Relationship="Self.FK_Request_Device" FromRole="Request" ToRole="Device" />
           <NavigationProperty Name="Priority" Relationship="Self.FK_Request_Priority" FromRole="Request" ToRole="Priority" />
           <NavigationProperty Name="RequestType" Relationship="Self.FK_Request_RequestType" FromRole="Request" ToRole="RequestType" />
-          <NavigationProperty Name="RequestStatu" Relationship="Self.FK_Request_Status" FromRole="Request" ToRole="RequestStatus" />
+          <NavigationProperty Name="RequestStatus" Relationship="Self.FK_Request_Status" FromRole="Request" ToRole="RequestStatus" />
           <NavigationProperty Name="User" Relationship="Self.FK_Request_User" FromRole="Request" ToRole="User" />
         </EntityType>
-        <EntityType Name="RequestStatu">
+        <EntityType Name="RequestStatus">
           <Key>
             <PropertyRef Name="RequestStatusId" />
           </Key>
@@ -408,7 +408,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Device_DeviceStatus">
-          <End Role="DeviceStatus" Type="Self.DeviceStatu" Multiplicity="1" />
+          <End Role="DeviceStatus" Type="DataBaseModel.DeviceStatus" Multiplicity="1" />
           <End Role="Device" Type="Self.Device" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DeviceStatus">
@@ -463,7 +463,7 @@
               <PropertyRef Name="PriorityId" />
             </Principal>
             <Dependent Role="Request">
-              <PropertyRef Name="RequestPriority" />
+              <PropertyRef Name="PriorityId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -480,14 +480,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Request_Status">
-          <End Role="RequestStatus" Type="Self.RequestStatu" Multiplicity="1" />
+          <End Role="RequestStatus" Type="DataBaseModel.RequestStatus" Multiplicity="1" />
           <End Role="Request" Type="Self.Request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RequestStatus">
               <PropertyRef Name="RequestStatusId" />
             </Principal>
             <Dependent Role="Request">
-              <PropertyRef Name="Status" />
+              <PropertyRef Name="RequestStatusId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -506,12 +506,12 @@
         <EntityContainer Name="DataBaseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Departments" EntityType="Self.Department" />
           <EntitySet Name="Devices" EntityType="Self.Device" />
-          <EntitySet Name="DeviceStatus" EntityType="Self.DeviceStatu" />
+          <EntitySet Name="DeviceStatus1" EntityType="DataBaseModel.DeviceStatus" />
           <EntitySet Name="Dialogues" EntityType="Self.Dialogue" />
           <EntitySet Name="Messages" EntityType="Self.Message" />
           <EntitySet Name="Priorities" EntityType="Self.Priority" />
           <EntitySet Name="Requests" EntityType="Self.Request" />
-          <EntitySet Name="RequestStatus" EntityType="Self.RequestStatu" />
+          <EntitySet Name="RequestStatus1" EntityType="DataBaseModel.RequestStatus" />
           <EntitySet Name="RequestTypes" EntityType="Self.RequestType" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Users" EntityType="Self.User" />
@@ -520,7 +520,7 @@
             <End Role="Request" EntitySet="Requests" />
           </AssociationSet>
           <AssociationSet Name="FK_Device_DeviceStatus" Association="Self.FK_Device_DeviceStatus">
-            <End Role="DeviceStatus" EntitySet="DeviceStatus" />
+            <End Role="DeviceStatus" EntitySet="DeviceStatus1" />
             <End Role="Device" EntitySet="Devices" />
           </AssociationSet>
           <AssociationSet Name="FK_Device_User" Association="Self.FK_Device_User">
@@ -544,7 +544,7 @@
             <End Role="Request" EntitySet="Requests" />
           </AssociationSet>
           <AssociationSet Name="FK_Request_Status" Association="Self.FK_Request_Status">
-            <End Role="RequestStatus" EntitySet="RequestStatus" />
+            <End Role="RequestStatus" EntitySet="RequestStatus1" />
             <End Role="Request" EntitySet="Requests" />
           </AssociationSet>
           <AssociationSet Name="FK_Request_User" Association="Self.FK_Request_User">
@@ -581,8 +581,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DeviceStatus">
-            <EntityTypeMapping TypeName="DataBaseModel.DeviceStatu">
+          <EntitySetMapping Name="DeviceStatus1">
+            <EntityTypeMapping TypeName="DataBaseModel.DeviceStatus">
               <MappingFragment StoreEntitySet="DeviceStatus">
                 <ScalarProperty Name="DeviceStatusId" ColumnName="DeviceStatusId" />
                 <ScalarProperty Name="DeviceStatusName" ColumnName="DeviceStatusName" />
@@ -629,8 +629,8 @@
                 <ScalarProperty Name="RequestDescription" ColumnName="RequestDescription" />
                 <ScalarProperty Name="RequestDepartment" ColumnName="RequestDepartment" />
                 <ScalarProperty Name="RequestCabinet" ColumnName="RequestCabinet" />
-                <ScalarProperty Name="RequestPriority" ColumnName="RequestPriority" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="PriorityId" ColumnName="PriorityId" />
+                <ScalarProperty Name="RequestStatusId" ColumnName="RequestStatusId" />
                 <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="RequestDateOfCreation" ColumnName="RequestDateOfCreation" />
@@ -639,8 +639,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="RequestStatus">
-            <EntityTypeMapping TypeName="DataBaseModel.RequestStatu">
+          <EntitySetMapping Name="RequestStatus1">
+            <EntityTypeMapping TypeName="DataBaseModel.RequestStatus">
               <MappingFragment StoreEntitySet="RequestStatus">
                 <ScalarProperty Name="RequestStatusId" ColumnName="RequestStatusId" />
                 <ScalarProperty Name="RequestStatusName" ColumnName="RequestStatusName" />

@@ -15,6 +15,7 @@ namespace HelpDesk.Models
     
     public partial class DataBaseEntities : DbContext
     {
+
         private static DataBaseEntities _context;
 
         public static DataBaseEntities GetContext()
@@ -36,12 +37,12 @@ namespace HelpDesk.Models
     
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Device> Devices { get; set; }
-        public virtual DbSet<DeviceStatu> DeviceStatus { get; set; }
+        public virtual DbSet<DeviceStatus> DeviceStatus { get; set; }
         public virtual DbSet<Dialogue> Dialogues { get; set; }
         public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<Priority> Priorities { get; set; }
         public virtual DbSet<Request> Requests { get; set; }
-        public virtual DbSet<RequestStatu> RequestStatus { get; set; }
+        public virtual DbSet<RequestStatus> RequestStatus { get; set; }
         public virtual DbSet<RequestType> RequestTypes { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }

@@ -20,8 +20,8 @@ namespace HelpDesk.Models
         public string RequestDescription { get; set; }
         public Nullable<int> RequestDepartment { get; set; }
         public string RequestCabinet { get; set; }
-        public int RequestPriority { get; set; }
-        public int Status { get; set; }
+        public int PriorityId { get; set; }
+        public int RequestStatusId { get; set; }
         public int DeviceId { get; set; }
         public int UserId { get; set; }
         public System.DateTime RequestDateOfCreation { get; set; }
@@ -32,7 +32,7 @@ namespace HelpDesk.Models
         public virtual Device Device { get; set; }
         public virtual Priority Priority { get; set; }
         public virtual RequestType RequestType { get; set; }
-        public virtual RequestStatu RequestStatu { get; set; }
+        public virtual RequestStatus RequestStatus { get; set; }
         public virtual User User { get; set; }
     }
 }

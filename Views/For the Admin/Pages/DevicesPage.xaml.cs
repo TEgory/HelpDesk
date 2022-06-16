@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HelpDesk.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,14 +16,12 @@ using System.Windows.Shapes;
 
 namespace HelpDesk.Views.For_the_Admin.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для DevicesPage.xaml
-    /// </summary>
     public partial class DevicesPage : Page
     {
         public DevicesPage()
         {
             InitializeComponent();
+            DGDeviceList.ItemsSource = DataBaseEntities.GetContext().Devices.ToList();
         }
     }
 }

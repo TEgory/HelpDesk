@@ -9,6 +9,15 @@
       Title="DevicesPage">
 
     <Grid>
-        
+        <DataGrid BorderBrush="{x:Null}" x:Name="DGDeviceList" Grid.RowSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" IsReadOnly="False" AutoGenerateColumns="False" RowEditEnding="DGRequestList_RowEditEnding">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding RequestId}" MinWidth="40" MaxWidth="80" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Тема" Binding="{Binding RequestSubject}" MinWidth="300" MaxWidth="450" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Пользователь" Binding="{Binding User.UserName}" MinWidth="200" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Оборудование" Binding="{Binding Device.DeviceName}" MinWidth="200" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Отдел" Binding="{Binding Department.DepartmenName}" MinWidth="200" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Кабинет" Binding="{Binding RequestCabinet}" MinWidth="200" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>

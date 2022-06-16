@@ -116,7 +116,7 @@
     <Compile Include="Models\Device.cs">
       <DependentUpon>DataBase.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DeviceStatu.cs">
+    <Compile Include="Models\DeviceStatus.cs">
       <DependentUpon>DataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Dialogue.cs">
@@ -131,7 +131,7 @@
     <Compile Include="Models\Request.cs">
       <DependentUpon>DataBase.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RequestStatu.cs">
+    <Compile Include="Models\RequestStatus.cs">
       <DependentUpon>DataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RequestType.cs">

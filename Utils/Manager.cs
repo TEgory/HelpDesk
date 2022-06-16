@@ -141,7 +141,6 @@ namespace HelpDesk.Utils
             hours = (Environment.TickCount / 3600000 % 24);
             minutes = (Environment.TickCount / 120000 % 60);
 
-            
             return TimeSpan.Parse(string.Format("{0:00}:{1:00}:{2:00}", days, hours, minutes)); ;
         }
     }

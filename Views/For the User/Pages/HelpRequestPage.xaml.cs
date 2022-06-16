@@ -39,7 +39,7 @@ namespace HelpDesk.Views.For_the_User.Pages
                 if (string.IsNullOrWhiteSpace(_currentRequest.RequestCabinet))
                     errors.AppendLine("Укажите кабинет!");
 
-                _currentRequest.Status = 1;
+                _currentRequest.RequestStatusId = 1;
                 _currentRequest.DeviceId = DataBaseEntities.GetContext().Devices.Where(x => x.DeviceName == Environment.MachineName).FirstOrDefault().DeviceId;
                 _currentRequest.UserId = DataBaseEntities.GetContext().Users.Where(x => x.UserName == Environment.UserName).FirstOrDefault().UserId;
                 _currentRequest.RequestDateOfCreation = DateTime.Now;
@@ -47,7 +47,7 @@ namespace HelpDesk.Views.For_the_User.Pages
 
                 if (errors.Length > 0)
                 {
-                    MessageBox.Show(errors.ToString());
+                    MessageBox.Show(errors.ToString(), "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
                     return;
                 }
 
