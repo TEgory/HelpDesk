@@ -9,7 +9,7 @@
       Title="DevicesPage">
 
     <Grid>
-        <DataGrid BorderBrush="{x:Null}" x:Name="DGDeviceList" IsReadOnly="True" ScrollViewer.HorizontalScrollBarVisibility="Disabled" AutoGenerateColumns="False">
+        <DataGrid BorderBrush="{x:Null}" x:Name="DGDeviceList" IsReadOnly="True" ScrollViewer.HorizontalScrollBarVisibility="Visible" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding DeviceId}" MinWidth="40" MaxWidth="80"/>
                 <DataGridTextColumn Header="Имя устройства" Binding="{Binding DeviceName}" MinWidth="200" MaxWidth="250"/>

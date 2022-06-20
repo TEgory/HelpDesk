@@ -9,7 +9,7 @@
       Title="ChatListPage">
 
     <Grid>
-        <Grid Grid.Row="0" Background="#E0E0E0">
+        <Grid x:Name="gridCheckChats" Grid.Row="0" Background="#E0E0E0" Visibility="Visible">
             <TextBlock Text="Список диалогов пуст"/>
         </Grid>
     </Grid>

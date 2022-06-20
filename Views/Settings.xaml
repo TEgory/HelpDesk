@@ -36,7 +36,7 @@
                     <Image Width="25" Height="25" Source="/Resources/twitter.png" HorizontalAlignment="Left"/>
                     <TextBlock Text="Twitter" FontSize="15" HorizontalAlignment="Right"/>
                 </Grid>
-                <Grid x:Name="gridVk" Width="42" Cursor="Hand" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+                <Grid x:Name="GridVk" Width="42" Cursor="Hand" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
                     <Image Width="20" Height="20" Source="/Resources/vk.png" HorizontalAlignment="Left"/>
                     <TextBlock Text="Vk" FontSize="15" HorizontalAlignment="Right"/>
                 </Grid>

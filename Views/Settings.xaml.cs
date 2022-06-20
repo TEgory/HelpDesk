@@ -29,10 +29,10 @@ namespace HelpDesk.Views
                     System.Diagnostics.Process.Start("https://github.com/TEgory");
                     return;
                 case "GridTwitter":
-                    System.Diagnostics.Process.Start("https://vk.com/");
+                    System.Diagnostics.Process.Start("https://twitter.com/");
                     return;
                 case "GridVk":
-                    System.Diagnostics.Process.Start("https://twitter.com/");
+                    System.Diagnostics.Process.Start("https://vk.com/");
                     return;
             }
         }

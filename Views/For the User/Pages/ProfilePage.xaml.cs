@@ -9,7 +9,7 @@ namespace HelpDesk.Views.For_the_User.Pages
         public ProfilePage()
         {
             InitializeComponent();
-            Manager.DisplayDeviceAttributes(txtCurrentUser, txtDeviceName, txtPublicIP, txtLocalIP, txtOS, txtDurationOnline);
+            Manager.DisplayDeviceAttributes(txtCurrentUser, txtDeviceName, txtPublicIP, txtLocalIP, txtOS, txtDurationOnline, txtDeviceStatus);
         }
 
         private void imgSettings_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

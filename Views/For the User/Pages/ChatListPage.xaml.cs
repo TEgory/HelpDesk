@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace HelpDesk.Views.For_the_User.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для ChatListPage.xaml
-    /// </summary>
     public partial class ChatListPage : Page
     {
         public ChatListPage()

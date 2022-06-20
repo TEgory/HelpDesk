@@ -7,6 +7,7 @@ using System.Linq;
 using System.Security.Principal;
 using HelpDesk.Models;
 using System.Windows;
+using System.Data.SqlClient;
 
 namespace HelpDesk.Utils
 {
@@ -15,6 +16,19 @@ namespace HelpDesk.Utils
         public static Frame MainFrame;
         public static Frame UserFrame;
         public static Frame AdminFrame;
+
+        //public static void ConnectionToServer()
+        //{
+        //    string connectionString = null;
+        //    var sb = new SqlConnectionStringBuilder()
+        //    {
+        //        DataSource = "PK",
+        //        InitialCatalog = "HelpDesk",
+        //        UserID = "sa",
+        //        Password = "sa2022",
+        //    };
+        //    connectionString = sb.ConnectionString;
+        //}
 
         public static bool IsAdministrator()
         {
@@ -90,7 +104,7 @@ namespace HelpDesk.Utils
         }
 
         // Использование кортежей для вывода нескольких значений
-        public static (TextBlock _CurrentUser, TextBlock _DeviceName, TextBlock _PublicIP, TextBlock _LocalIP, TextBlock _OS, TextBlock _DurationOnline) DisplayDeviceAttributes(TextBlock CurrentUser, TextBlock DeviceName, TextBlock PublicIP, TextBlock LocalIP, TextBlock OS, TextBlock DurationOnline)
+        public static (TextBlock _CurrentUser, TextBlock _DeviceName, TextBlock _PublicIP, TextBlock _LocalIP, TextBlock _OS, TextBlock _DurationOnline, TextBlock _DeviceStatus) DisplayDeviceAttributes(TextBlock CurrentUser, TextBlock DeviceName, TextBlock PublicIP, TextBlock LocalIP, TextBlock OS, TextBlock DurationOnline, TextBlock DeviceStatus)
         {
             CurrentUser.Text = Environment.UserName;
             DeviceName.Text = Environment.MachineName;
@@ -98,7 +112,8 @@ namespace HelpDesk.Utils
             LocalIP.Text = GetLocalIPAddress();
             OS.Text = GetOS();
             DurationOnline.Text = GetDurationOnline().ToString();
-            return (CurrentUser, DeviceName, PublicIP, LocalIP, OS, DurationOnline);
+            DeviceStatus.Text = "OK";
+            return (CurrentUser, DeviceName, PublicIP, LocalIP, OS, DurationOnline, DeviceStatus);
         }
 
         private static string GetPublicIP()
