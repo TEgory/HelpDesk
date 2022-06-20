@@ -99,5 +99,6 @@
             <Setter Property="BorderBrush" Value="Black"></Setter>
             <Setter Property="Margin" Value="3"></Setter>
         </Style>
+
     </Application.Resources>
 </Application>

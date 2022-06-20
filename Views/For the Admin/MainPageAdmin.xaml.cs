@@ -56,7 +56,8 @@ namespace HelpDesk.Views.For_the_Admin
 
         private void Click_Settings(object sender, MouseButtonEventArgs e)
         {
-            Manager.AdminFrame.Navigate(new DevicesPage());
+            Settings settings = new Settings();
+            settings.Show();
         }
     }
 }

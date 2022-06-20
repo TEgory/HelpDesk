@@ -20,7 +20,6 @@ namespace HelpDesk.Views.For_the_Admin.Pages
 {
     public partial class RequestListPage : Page
     {
-        List<Request> _products = new List<Request>();
         private string _FindedName;
 
         public RequestListPage()
@@ -34,30 +33,23 @@ namespace HelpDesk.Views.For_the_Admin.Pages
 
         }
 
-        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
+        private void SearchTermTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
-            _FindedName = txtSearch.Text;
+            _FindedName = SearchTermTextBox.Text.ToLower();
 
-            if (_FindedName == "Поиск....." || string.IsNullOrWhiteSpace(_FindedName))
-                return;
+            if (string.IsNullOrWhiteSpace(_FindedName) || _FindedName.Length == 0)
+                DGRequestList.ItemsSource = DataBaseEntities.GetContext().Requests.ToList();
 
-            _products = _products.OrderBy(x => x.RequestSubject).Where(x => x.RequestSubject.ToLower().Contains(_FindedName) ||
-                x.PriorityId.ToString().Contains(_FindedName) ||
+            DGRequestList.ItemsSource = DataBaseEntities.GetContext().Requests.ToList().Where(x => x.RequestSubject.ToLower().Contains(_FindedName) ||
+                x.PriorityId.ToString().ToLower().Contains(_FindedName) ||
                 x.RequestType.RequestTypeName.ToLower().Contains(_FindedName) ||
-                x.RequestDescription.ToLower().ToString().Contains(_FindedName) ||
                 x.Department.DepartmenName.ToLower().Contains(_FindedName) ||
                 x.User.UserName.ToLower().Contains(_FindedName) ||
                 x.Device.DeviceName.ToLower().Contains(_FindedName) ||
                 x.RequestCabinet.Contains(_FindedName) ||
                 x.Department.DepartmenName.ToLower().Contains(_FindedName) ||
-                x.RequestStatus.RequestStatusName.ToLower().Contains(_FindedName.ToLower())).ToList();
-
-            DGRequestList.ItemsSource = _products;
-
-            if (_products.Count < 0)
-                MessageBox.Show("Ничего не найдено!", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
-                                                                                                    
+                x.RequestStatus.RequestStatusName.ToLower().Contains(_FindedName.ToLower())).ToList();                                                                                     
         }
 
         private void DGRequestList_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)

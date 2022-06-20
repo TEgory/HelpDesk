@@ -5,18 +5,21 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:HelpDesk.Views.For_the_Admin.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="1200"
       Title="DevicesPage">
 
     <Grid>
-        <DataGrid BorderBrush="{x:Null}" x:Name="DGDeviceList" Grid.RowSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" IsReadOnly="False" AutoGenerateColumns="False" RowEditEnding="DGRequestList_RowEditEnding">
+        <DataGrid BorderBrush="{x:Null}" x:Name="DGDeviceList" IsReadOnly="True" ScrollViewer.HorizontalScrollBarVisibility="Disabled" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding RequestId}" MinWidth="40" MaxWidth="80" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Тема" Binding="{Binding RequestSubject}" MinWidth="300" MaxWidth="450" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Пользователь" Binding="{Binding User.UserName}" MinWidth="200" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Оборудование" Binding="{Binding Device.DeviceName}" MinWidth="200" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Отдел" Binding="{Binding Department.DepartmenName}" MinWidth="200" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Кабинет" Binding="{Binding RequestCabinet}" MinWidth="200" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Id" Binding="{Binding DeviceId}" MinWidth="40" MaxWidth="80"/>
+                <DataGridTextColumn Header="Имя устройства" Binding="{Binding DeviceName}" MinWidth="200" MaxWidth="250"/>
+                <DataGridTextColumn Header="Внешний IP" Binding="{Binding PublicIP}" MinWidth="180"/>
+                <DataGridTextColumn Header="Внутренний IP" Binding="{Binding LocalIP}" MinWidth="180"/>
+                <DataGridTextColumn Header="Операционная система" Binding="{Binding OperatingSystem}" MinWidth="200"/>
+                <DataGridTextColumn Header="Состояние" Binding="{Binding ConditionStr}" MinWidth="170"/>
+                <DataGridTextColumn Header="Время работы" Binding="{Binding DurationOnline}" MinWidth="176"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding DeviceStatus.DeviceStatusName}" MinWidth="130"/>
+                <DataGridTextColumn Header="Последний пользователь" Binding="{Binding User.UserName}" MinWidth="200"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

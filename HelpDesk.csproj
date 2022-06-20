@@ -95,54 +95,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\DataBase.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataBase.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DataBase.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DataBase.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataBase.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Department.cs">
-      <DependentUpon>DataBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Device.cs">
-      <DependentUpon>DataBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DeviceStatus.cs">
-      <DependentUpon>DataBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Dialogue.cs">
-      <DependentUpon>DataBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Message.cs">
-      <DependentUpon>DataBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Priority.cs">
-      <DependentUpon>DataBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Request.cs">
-      <DependentUpon>DataBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RequestStatus.cs">
-      <DependentUpon>DataBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RequestType.cs">
-      <DependentUpon>DataBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>DataBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\User.cs">
-      <DependentUpon>DataBase.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -160,9 +112,6 @@
     </Compile>
     <Compile Include="Views\For the Admin\Pages\RequestListPage.xaml.cs">
       <DependentUpon>RequestListPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\For the Admin\Pages\SettingsPage.xaml.cs">
-      <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\For the User\Pages\ChatListPage.xaml.cs">
       <DependentUpon>ChatListPage.xaml</DependentUpon>
@@ -190,10 +139,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\For the Admin\Pages\RequestListPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\For the Admin\Pages\SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -259,13 +204,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Models\DataBase.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DataBase.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Models\DataBase.edmx.diagram">
-      <DependentUpon>DataBase.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -341,16 +279,12 @@
     <Resource Include="Resources\departments.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Models\DataBase.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataBase.edmx</DependentUpon>
-      <LastGenOutput>DataBase.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\DataBase.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataBase.edmx</DependentUpon>
-      <LastGenOutput>DataBase.cs</LastGenOutput>
-    </Content>
+    <Resource Include="Resources\twitter.png" />
+    <Resource Include="Resources\vk.png" />
+    <Resource Include="Resources\github.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

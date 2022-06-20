@@ -13,8 +13,20 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <TextBox x:Name="txtSearch" Text="Поиск....." Foreground="LightGray" HorizontalAlignment="Right" Width="350" TextChanged="txtSearch_TextChanged"/>
+        <Grid Grid.Row="0" HorizontalAlignment="Right">
+            <TextBox Width="250"  VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="SearchTermTextBox" Margin="5" TextChanged="SearchTermTextBox_TextChanged"/>
+            <TextBlock IsHitTestVisible="False" Text="Поиск..." VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=SearchTermTextBox}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
         </Grid>
         <DataGrid BorderBrush="{x:Null}" Grid.Row="1" x:Name="DGRequestList" Grid.RowSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" IsReadOnly="False" AutoGenerateColumns="False" RowEditEnding="DGRequestList_RowEditEnding">
             <DataGrid.Columns>
@@ -31,7 +43,7 @@
                                         MinWidth="180"
                                         MaxWidth="180"
                                         DisplayMemberPath="PriorityName"
-                                        SelectedValuePath="RequestPriority"
+                                        SelectedValuePath="PriorityId"
                                         SelectedValueBinding="{Binding PriorityId}"
                 ></DataGridComboBoxColumn>
                 <DataGridComboBoxColumn x:Name="CBRequestStatus" Header="Статус"
