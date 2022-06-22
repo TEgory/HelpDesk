@@ -9,6 +9,23 @@
       Title="DepartmentsPage">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <DataGrid BorderBrush="{x:Null}" Grid.Row="0" x:Name="DGDepartmentList" IsReadOnly="True" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding DepartmentId}" MinWidth="40" MaxWidth="80" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Название отдела" Binding="{Binding DepartmenName}" Width="*" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Border Grid.Row="0" Style="{StaticResource borderChat}"></Border>
+        <Grid Grid.Row="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBox x:Name="txtNewDep" Width="300"/>
+                <Button x:Name="btnAdd" Content="Добавить" Click="btnAdd_Click"/>
+            </StackPanel>
+            <Button x:Name="btnDel" Content="Удалить" HorizontalAlignment="Right" Cursor="Hand" Click="btnDel_Click"/>
+        </Grid>
     </Grid>
 </Page>

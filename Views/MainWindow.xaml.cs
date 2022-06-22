@@ -14,18 +14,18 @@ namespace HelpDesk
             {
                 Manager.AddUser();
                 Manager.AddEditDevice(true);
-                //Manager.MainFrame.Navigate(new Views.For_the_Admin.MainPageAdmin());
+                Manager.MainFrame.Navigate(new Views.For_the_Admin.MainPageAdmin());
 
-                if (Manager.IsAdministrator())
-                {
-                    Manager.MainFrame.Navigate(new Views.For_the_Admin.MainPageAdmin());
-                    return;
-                }
-                else
-                {
-                    Manager.MainFrame.Navigate(new Views.For_the_User.MainPageUser());
-                    return;
-                }
+                //if (Manager.IsAdministrator())
+                //{
+                //    Manager.MainFrame.Navigate(new Views.For_the_Admin.MainPageAdmin());
+                //    return;
+                //}
+                //else
+                //{
+                //    Manager.MainFrame.Navigate(new Views.For_the_User.MainPageUser());
+                //    return;
+                //}
             }
             catch (Exception ex)
             {
