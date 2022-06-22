@@ -9,6 +9,7 @@ namespace HelpDesk.Views.For_the_User
         {
             InitializeComponent();
             Manager.UserFrame = UserFrame;
+            Manager.UserFrame.Navigate(new Pages.ProfilePage());
         }
 
         private void Click_Request(object sender, System.Windows.Input.MouseButtonEventArgs e)

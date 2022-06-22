@@ -18,7 +18,12 @@
         <StackPanel Orientation="Vertical" Grid.Row="1" Margin="10">
             <Grid Margin="0 10 0 0">
                 <TextBlock Text="Язык" HorizontalAlignment="Left"/>
-                <ComboBox HorizontalAlignment="Right"/>
+                <ComboBox VerticalAlignment="Center" SelectedIndex="0" HorizontalAlignment="Right">
+                    <StackPanel Orientation="Horizontal" >
+                        <Image Width="20" Source="/Resources/Ru.png" Margin="5"/>
+                        <TextBlock Text="RU"/>
+                    </StackPanel>
+                </ComboBox>
             </Grid>
             <Grid Margin="0 10 0 0">
                 <TextBlock Text="Уведомления" HorizontalAlignment="Left"/>
