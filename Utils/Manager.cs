@@ -19,7 +19,7 @@ namespace HelpDesk.Utils
 
         //public static void ConnectionToServer()
         //{
-        //    string connectionString = null;
+        //    string connectionString = null;asdasdasdsasd
         //    var sb = new SqlConnectionStringBuilder()
         //    {
         //        DataSource = "PK",
