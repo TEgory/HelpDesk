@@ -28,7 +28,7 @@ namespace HelpDesk.Utils
         //        Password = "sa2022",
         //    };
         //    connectionString = sb.ConnectionString;
-        //}
+        //}asdasasd
 
         public static bool IsAdministrator()
         {
